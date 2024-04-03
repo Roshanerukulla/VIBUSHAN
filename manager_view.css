@@ -20,7 +20,8 @@ body {
   
   .logo {
     color: #fff;
-    margin: 0;
+    max-width: 50px;
+    max-height: 50px;
   }
   
   .nav-links {
@@ -44,6 +45,24 @@ body {
   }
   
   .content {
-    padding-top: 70px; /* Adjust according to your navbar height */
+    padding-top: 100px; /* Adjust according to your navbar height */
+    text-align: center; /* Center the content */
+  }
+  
+  .buttons {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 16px 32px; /* Increase button padding */
+    background-color: #000;
+    border: none;
+    border-radius: 4px;
+    color: #DAA520;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px; /* Increase button font size */
+    margin: 10px; /* Add margin around the buttons */
   }
   
