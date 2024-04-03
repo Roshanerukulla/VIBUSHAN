@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #000;
+    z-index: 1000;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    color: #fff;
+    max-width: 50px;
+    max-height: 50px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-links li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .nav-links li:last-child {
+    margin-right: 0;
+  }
+  
+  .nav-links li a {
+    color: #DAA520;
+    text-decoration: none;
+  }
+  
+  .content {
+    padding-top: 100px; /* Adjust according to your navbar height */
+    text-align: center; /* Center the content */
+  }
+  
+  .buttons {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 16px 32px; /* Increase button padding */
+    background-color: #000;
+    border: none;
+    border-radius: 4px;
+    color: #DAA520;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px; /* Increase button font size */
+    margin: 10px; /* Add margin around the buttons */
+  }
+  
+
+  
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 400px; /* Increase the width of the login box */
+    height: 450px; /* Increase the height of the login box */
+    padding: 40px; /* Increase padding */
+    background-color: black;
+    color: #DAA520;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    margin-top: 20px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px; /* Increase margin */
+    font-size: 18px; /* Increase font size */
+    text-align: center;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 12px; /* Increase padding */
+    margin-bottom: 20px; /* Increase margin */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* Increase font size */
+}
+
+button {
+    width: 100%;
+    padding: 12px; /* Increase padding */
+    font-size: 18px; /* Increase font size */
+    background-color: #DAA520;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFD700;
+}
+
+.options {
+    margin-top: 20px; /* Increase margin */
+    text-align: center;
+}
+
+.options a {
+    font-size: 16px; /* Increase font size */
+    color: #DAA520;
+    text-decoration: none;
+    margin-right: 20px; /* Increase margin */
+}
+
+.options a:last-child {
+    margin-right: 0;
+}
