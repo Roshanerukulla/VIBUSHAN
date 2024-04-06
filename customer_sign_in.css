@@ -1,0 +1,115 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #000;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.smalllogo {
+    color: #fff;
+    max-width: 80px;
+    max-height: 50px;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.signin-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color:black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #DAA520;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    color:gold;
+}
+
+.input-group label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #DAA520
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.input-group button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000;
+    color:gold;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: large;
+    transition: color 0.3s ease; /* Add transition effect */
+}
+
+.input-group button:hover{
+    color: goldenrod;
+}
+
+.signup-forgot {
+    margin-top: 10px;
+    font: large;
+}
+
+.signup-forgot a {
+    text-decoration: none;
+    color: #DAA520;
+    font: larger;
+}
+
+.signup-forgot a:hover {
+    color: gold;
+}
+
+.nav-links {
+    list-style: none;
+    color: #DAA520;
+    padding: 5px; /* Adjust padding */
+    margin: auto;
+    text-align: right;
+    font-size: 14px; /* Adjust font size */
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-right: 30px;
+    
+}
+
+.nav-links li a {
+    color: #DAA520;
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    color: gold;
+}
