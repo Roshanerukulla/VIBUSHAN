@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Manager!</title>
+    <link rel="stylesheet" href="manager_sigin_reg.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+          <div class="container">
+            <img src="logo.png" alt="" class="logo">
+            <ul class="nav-links">
+              <li><a href="home.html">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <div class="registration-container">
+        <h2>Manager Registration</h2>
+        <form action="manager_registration.php" method="POST">
+            <div class="form-group">
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@vibushan.com" title="Email ID should end with @vibushan.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="form-group">
+                <label for="auth-code">Authentication Code:</label>
+                <input type="text" id="auth-code" name="auth-code" maxlength="6" required>
+                <small>Enter 6 digit code: </small>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+      
+</body>
+</html>
