@@ -17,6 +17,13 @@ body {
     align-items: center;
     padding: 10px 20px;
   }
+
+  .content-container {
+      margin-top: 80px; /* Adjust this value to increase/decrease the gap between the navbar and the container */
+      padding: 20px;
+      background-color: #f9f9f9;
+
+  }
   
   .logo {
     color: #fff;
