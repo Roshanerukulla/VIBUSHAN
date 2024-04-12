@@ -64,15 +64,15 @@ header {
     border: none;
     border-radius: 5px;
     background-color: #000;
-    color:gold;
+    color:goldenrod;
     font-weight: bold;
     cursor: pointer;
     font-size: large;
-    transition: color 0.3s ease; /* Add transition effect */
+    
 }
 
 .input-group button:hover{
-    color: goldenrod;
+    color: gold;
 }
 
 .signup-forgot {

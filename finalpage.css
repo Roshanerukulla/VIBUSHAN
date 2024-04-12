@@ -1,0 +1,89 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    width: 100%;
+    position:absolute;
+    top:  0;
+    background-color: #000;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.smalllogo {
+    color: #fff;
+    max-width: 80px;
+    max-height: 50px;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    bottom: 100px;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #000;
+    z-index: 1000;
+    padding: 33.5px;
+}
+
+
+.container {
+    padding-top: 60px;
+}
+.order-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-top: 20px;
+    background-color: goldenrod;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.order-btn:hover {
+    background-color: #FFD700;
+    
+}
+
+.review-link {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-top: 20px;
+    background-color: goldenrod;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.review-link:hover {
+    background-color: #FFD700;
+}
+.logout-btn {
+    position: fixed;
+    
+    right: 20px; /* Adjust right position as needed */
+    color: #DAA520;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    color: gold;
+}
