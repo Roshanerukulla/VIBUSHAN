@@ -77,8 +77,9 @@ header {
 }
 .logout-btn {
     position: fixed;
-    
-    right: 20px; /* Adjust right position as needed */
+    top: 20px; /* Adjust top position as needed */
+    right: 35px; /* Adjust right position as needed */
+    margin-top: 5px; /* Adjust margin-top as needed */
     color: #DAA520;
     text-decoration: none;
     font-weight: bold;
