@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="manager_view.css">
@@ -24,7 +23,7 @@
               <li><a href="#">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Your Cart</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="manager_sigin_reg.html">Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -43,9 +42,10 @@ $html = "<html><table style='width:100%' border='1px solid black'><tr>
     <th>veg_or_nonveg</th>
     <th>image</th>
     <th>quantity</th>
+    <th>is_available</th>
   </tr>";
 
-$sql = "SELECT dish_name, cuisine, ingredients, veg_or_nonveg, dish_id, quantity FROM vibushan_menu WHERE is_available = 'Yes'";
+$sql = "SELECT dish_name, cuisine, ingredients, veg_or_nonveg, dish_id, quantity, is_available FROM vibushan_menu";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -62,6 +62,11 @@ if (mysqli_num_rows($result) > 0) {
                         <button onclick='updateQuantity(\"".$row['dish_id']."\", -1)'>-</button>
                         <button onclick='updateQuantity(\"".$row['dish_id']."\", 1)'>+</button>
                     </td>
+                    <td>
+                    <span>".$row['is_available']."</span>
+                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"No\")'>No</button>
+                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"Yes\")'>Yes</button>
+                    </td>
                 </tr>";
     }
 } else {
@@ -75,8 +80,8 @@ mysqli_close($conn);
 
 
 <script>
-function updateQuantity(dishId, change) {
-    // AJAX request to update quantity in SQL data
+function updateAvailability(dishId, availability) {
+    // AJAX request to update availability in SQL data
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -84,9 +89,9 @@ function updateQuantity(dishId, change) {
             location.reload();
         }
     };
-    xhr.open("POST", "update_quantity.php", true);
+    xhr.open("POST", "update_menu_ava.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("dish_id=" + dishId + "&change=" + change);
+    xhr.send("dish_id=" + dishId + "&availability=" + availability);
 }
 
 
