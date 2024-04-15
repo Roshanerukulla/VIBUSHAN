@@ -40,32 +40,28 @@ $html = "<html><table style='width:100%' border='1px solid black'><tr>
     <th>cuisine</th>
     <th>ingredients</th>
     <th>veg_or_nonveg</th>
-    <th>image</th>
-    <th>quantity</th>
+    <th>dish_id</th>
     <th>is_available</th>
   </tr>";
 
-$sql = "SELECT dish_name, cuisine, ingredients, veg_or_nonveg, dish_id, quantity, is_available FROM vibushan_menu";
+# $sql = "SELECT dish_name, cuisine, ingredients, veg_or_nonveg, dish_id, quantity, is_available FROM vibushan_menu";
+$sql = "SELECT dish_name, cuisine, ingredients, veg_or_nonveg, dish_id, available FROM alldishes";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
-        $image = $row['dish_id'] . ".jpg"; // Assuming the image file name is constructed using dish id
+        // Assuming the image file name is constructed using dish id
         $html .= "<tr>
                     <td>".$row['dish_name']."</td>
                     <td>".$row['cuisine']."</td>
                     <td>".$row['ingredients']."</td>
                     <td>".$row['veg_or_nonveg']."</td>
-                    <td><img src='$image' alt='".$row['dish_name']."' width='200' height='200'></td>
-                    <td>
-                        <span>".$row['quantity']."</span>
-                        <button onclick='updateQuantity(\"".$row['dish_id']."\", -1)'>-</button>
-                        <button onclick='updateQuantity(\"".$row['dish_id']."\", 1)'>+</button>
-                    </td>
+                    <td>".$row['dish_id']."</td>
+                    
                     <td>
                     <span>".$row['is_available']."</span>
-                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"No\")'>No</button>
-                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"Yes\")'>Yes</button>
+                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"Not Available\")'>Not Available</button>
+                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"Available\")'>Available</button>
                     </td>
                 </tr>";
     }

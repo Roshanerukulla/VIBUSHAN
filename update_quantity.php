@@ -8,7 +8,7 @@ if(isset($_POST['dish_id']) && isset($_POST['change'])) {
     $change = intval($_POST['change']); // Convert change to integer
     
     // Prepare SQL statement to update quantity
-    $sql = "UPDATE vibushan_menu SET quantity = quantity + ? WHERE dish_id = ?";
+    $sql = "UPDATE alldishes SET quantity = quantity + ? WHERE dish_id = ?";
     $stmt = $conn->prepare($sql);
     
     // Bind parameters

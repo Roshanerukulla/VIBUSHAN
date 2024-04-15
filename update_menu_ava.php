@@ -8,7 +8,7 @@ if(isset($_POST['dish_id']) && isset($_POST['availability'])) {
     $availability = $_POST['availability']; // Get availability
     
     // Prepare SQL statement to update availability
-    $sql = "UPDATE vibushan_menu SET is_available = ? WHERE dish_id = ?";
+    $sql = "UPDATE alldishes SET available = ? WHERE dish_id = ?";
     $stmt = $conn->prepare($sql);
     
     // Bind parameters
