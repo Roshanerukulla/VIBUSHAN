@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Available Dishes</title>
+<link rel="stylesheet" href="styles.css"> <!-- Assuming your CSS file is named styles.css -->
+</head>
+<body>
+    <div class="grid-container">
+        <?php
+        // Include database connection file
+        include 'dbconnection.php';
+
+        // Query to fetch available dishes from the database
+        $sql = "SELECT * FROM alldishes WHERE available = 'Available'";
+        $result = $conn->query($sql);
+
+        // Check if there are any available dishes
+        if ($result->num_rows > 0) {
+            // Output the available dishes in a grid view
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="grid-item">';
+                echo '<img src="' . $row['image'] . '" alt="' . $row['dish_name'] . '" class="dish-image">';
+                echo '<h3>' . $row['dish_name'] . '</h3>';
+                echo '<p class="dish-price">$' . $row['price'] . ' <img src="cart_icon.png" alt="Add to Cart" class="cart-icon"></p>';
+                echo '<p class="dish-details">';
+                echo '<span class="dish-cuisine">Cuisine: ' . $row['cuisine'] . '</span><br>';
+                echo '<span class="dish-ingredients">Ingredients: ' . $row['ingredients'] . '</span>';
+                echo '</p>';
+                echo '</div>';
+            }
+        } else {
+            // If no available dishes are found
+            echo "<p>No available dishes found</p>";
+        }
+
+        // Close the database connection
+        $conn->close();
+        ?>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+/* General styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+}
+
+.dish-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.dish-details {
+    display: none;
+}
+
+/* Show dish details on hover */
+.grid-item:hover .dish-details {
+    display: block;
+}
+
+/* Dish name styles */
+h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Dish price styles */
+.dish-price {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #666;
+}
+
+/* Cart icon styles */
+.cart-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* Dish cuisine styles */
+.dish-cuisine {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* Dish ingredients styles */
+.dish-ingredients {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #888;
+}
