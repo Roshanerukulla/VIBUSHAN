@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
-        echo "Manager registered successfully!";
+        echo "customer registered successfully!";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
