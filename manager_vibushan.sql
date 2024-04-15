@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 10, 2024 at 03:21 PM
+-- Generation Time: Apr 15, 2024 at 12:23 AM
 -- Server version: 10.6.16-MariaDB-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.14
 
@@ -39,7 +39,13 @@ CREATE TABLE `manager_vibushan` (
 
 INSERT INTO `manager_vibushan` (`manager_id`, `email`, `password`) VALUES
 (1, 'bshelke1@vibushan.com', '123'),
-(2, 'v1@vibushan.com', '123');
+(2, 'v1@vibushan.com', '123'),
+(3, 'vijay@vibhusan.com', '123456'),
+(4, 'vijay@vibhusan.com', '123456'),
+(5, 'vijay@vibhusan.com', '123456'),
+(6, 'bshelke2@vibushan.com', '123'),
+(7, 'bshelke3@vibushan.com', '123'),
+(8, 'b1@vibushan.com', '123');
 
 --
 -- Indexes for dumped tables
@@ -59,7 +65,7 @@ ALTER TABLE `manager_vibushan`
 -- AUTO_INCREMENT for table `manager_vibushan`
 --
 ALTER TABLE `manager_vibushan`
-  MODIFY `manager_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `manager_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
