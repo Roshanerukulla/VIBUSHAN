@@ -1,12 +1,18 @@
+<?php
+session_start();
+// Check if the user is not logged in
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("Location: customer_sign_in.html");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Query Page</title>
-    <link rel="icon" href=
-"logo.png"
-          type="image/x-icon">
+    <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="stylesheet" href="customer_query_page.css">
 </head>
 <body>
@@ -24,7 +30,7 @@
     <div class="container">
         <h2>What do you want to do today?</h2>
         <div class="buttons">
-            <a href="all_dishes.php" class="button order-now">Order Now</a>
+            <a href="availabledishes.php" class="button order-now">Order Now</a>
             <a href="#" class="button see-past-orders">See Past Orders</a>
         </div>
     </div>
