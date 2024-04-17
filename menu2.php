@@ -1,39 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
-    <link rel="stylesheet" href="manager_view.css">
-    <style>
-        .content-container {
-            margin-top: 80px; /* Adjust this value to increase/decrease the gap between the navbar and the container */
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-          <div class="container">
-            <img src="logo.png" alt="" class="logo">
-            <ul class="nav-links">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Your Cart</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-
-      
-
-<div class="container content-container">
-
 <?php
 session_start(); // Start the session
 
@@ -54,7 +18,7 @@ $html = "<html><table style='width:100%' border='1px solid black'><tr>
     <th>price</th>
 </tr>";
 
-$sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE available = 'Available'";
+$sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE available = 'Available' AND quantity > 0";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -112,7 +76,3 @@ function updateQuantity(dishId, change) {
     xhr.send("dish_id=" + dishId + "&change=" + change);
 }
 </script>
-
-</div>
-</body>
-</html>
