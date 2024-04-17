@@ -1,6 +1,7 @@
 <?php
+ echo "Your password has been reset.";
 // Include database connection
-include('db_connection.php');
+include 'dbconnection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -21,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $update_query = "UPDATE customers SET password = '$hashed_password' WHERE username = '$username'";
     if (mysqli_query($conn, $update_query)) {
         // Password updated successfully, redirect to a success page
+        echo "Your password has been reset.";
         header("Location: password_reset_success.html");
         exit();
     } else {
