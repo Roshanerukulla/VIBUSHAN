@@ -34,6 +34,13 @@
 
 <div class="container content-container">
 <?php
+session_start(); // Start the session
+
+// Check if the dishes array exists in the session, if not, initialize it
+if (!isset($_SESSION['selected_dishes'])) {
+    $_SESSION['selected_dishes'] = array();
+}
+
 include 'dbconnection.php';
 
 $html = "<html><table style='width:100%' border='1px solid black'><tr>
@@ -44,9 +51,9 @@ $html = "<html><table style='width:100%' border='1px solid black'><tr>
     <th>image</th>
     <th>quantity</th>
     <th>price</th>
-  </tr>";
+</tr>";
 
-# $sql = "SELECT dish_name, cuisine, ingredients, veg_or_nonveg, dish_id, quantity FROM vibushan_menu WHERE is_available = 'Yes'";
+$checkoutDisabled = true;
 
 $sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price , quantity FROM alldishes WHERE available = 'Available'";
 $result = mysqli_query($conn, $sql);
@@ -63,22 +70,31 @@ if (mysqli_num_rows($result) > 0) {
                     
                     <td><img src='" . $imageFolder . $image . "' alt='" . $row['dish_name'] . "' width='200' height='200'></td>
                     <td>
-                        <span>".$row['quantity']."</span>
-                        <button onclick='updateQuantity(\"".$row['dish_id']."\", -1)'>-</button>
-                        <button onclick='updateQuantity(\"".$row['dish_id']."\", 1)'>+</button>
+                        <span id='quantity_".$row['dish_id']."'>".$row['quantity']."</span>
+                        <button onclick='updateQuantity(\"".$row['dish_id']."\", -1); enableCheckout();'>-</button>
+                        <button onclick='updateQuantity(\"".$row['dish_id']."\", 1); enableCheckout();'>+</button>
                     </td>
                     <td>".$row['price']."</td>
                 </tr>";
+        if ($row['quantity'] != 0) {
+            $checkoutDisabled = false; // Enable checkout if any quantity is non-zero
+        }
     }
 } else {
     $html .= "<tr><td colspan='6'>No results</td></tr>";
 }
 
-$html .= "</table></html>";
+$html .= "</table>";
+
+// Checkout button
+$html .= "<form action='checkout.php' method='post'>";
+$html .= "<button type='submit' name='checkoutButton' id='checkoutButton' disabled>Checkout</button>";
+$html .= "</form>";
+
+$html .= "</html>";
 echo $html;
 mysqli_close($conn);
 ?>
-
 
 <script>
 function updateQuantity(dishId, change) {
@@ -86,8 +102,8 @@ function updateQuantity(dishId, change) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            // Reload the page after successful update
-            location.reload();
+            // Update quantity display
+            document.getElementById('quantity_' + dishId).innerText = parseInt(document.getElementById('quantity_' + dishId).innerText) + change;
         }
     };
     xhr.open("POST", "update_quantity.php", true);
@@ -95,7 +111,9 @@ function updateQuantity(dishId, change) {
     xhr.send("dish_id=" + dishId + "&change=" + change);
 }
 
-
+function enableCheckout() {
+    document.getElementById('checkoutButton').disabled = false;
+}
 </script>
 
 </div>
