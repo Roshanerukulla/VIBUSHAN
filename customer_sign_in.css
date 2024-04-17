@@ -9,11 +9,13 @@ body, html {
 
 header {
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: #000;
     z-index: 1000;
-    padding: 20px;
+    padding: 22px;
+    
+    
 }
 
 .smalllogo {
@@ -21,8 +23,8 @@ header {
     max-width: 80px;
     max-height: 50px;
     position: absolute;
-    left: 20px;
-    top: 10px;
+    left: 0px;
+    top: 0px;
 }
 
 .container {
@@ -92,14 +94,15 @@ header {
 .signup-forgot a:hover {
     color: gold;
 }
-
 .nav-links {
     list-style: none;
-    color: #DAA520;
+    color: goldenrod;
     padding: 5px; /* Adjust padding */
     margin: auto;
     text-align: right;
-    font-size: 14px; /* Adjust font size */
+    left: 1px;
+    
+    font-size: 16px; /* Adjust font size */
 }
 
 .nav-links li {
@@ -108,3 +111,11 @@ header {
     
 }
 
+.nav-links li a {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+.nav-links :hover{
+    color: gold;
+}
