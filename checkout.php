@@ -53,7 +53,7 @@ if (isset($_SESSION['selected_dishes']) && !empty($_SESSION['selected_dishes']))
         $dishName = $row['dish_name'];
         $price = $row['price'];
         $currentQuantity = $row['quantity'];
-        $total = $quantity * $price;
+        $total = $currentQuantity * $price;
         $grandTotal += $total;
         echo "<tr>
                 <td>$dishName</td>
@@ -74,6 +74,7 @@ if (isset($_SESSION['selected_dishes']) && !empty($_SESSION['selected_dishes']))
     echo "<a href='menu.php'><button>Back to Menu</button></a>";
 } else {
     echo "<p>No dishes selected for checkout.</p>";
+    echo "<a href='menu.php'><button>Back to Menu</button></a>";
 }
 mysqli_close($conn);
 ?>

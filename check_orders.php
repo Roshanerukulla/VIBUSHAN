@@ -36,31 +36,49 @@
     include 'dbconnection.php';
     
     $html = "<html><table style='width:100%' border='1px solid black'><tr>
-        <th>dishname</th>
+        <th>customer_id</th>
+        <th>username</th>
+        <th>address</th>
+        <th>dish_id</th>
+        <th>dish_name</th>
         <th>cuisine</th>
         <th>ingredients</th>
         <th>veg_or_nonveg</th>
-        <th>image</th>
+        <th>price</th>
         <th>quantity</th>
       </tr>";
     
-    $sql = "SELECT dish_name, cuisine, ingredients, veg_or_nonveg, dish_id, quantity FROM vibushan_menu WHERE quantity > 0";
+    $sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";
+    $sql1 = "SELECT customer_id, username, address FROM customers";
     $result = mysqli_query($conn, $sql);
-    
+    $result1 = mysqli_query($conn, $sql1);
+
+    if (mysqli_num_rows($result1) > 0) {
+        while($row = mysqli_fetch_assoc($result1)) {
+            // Assuming the image file name is constructed using dish id
+            $html .= "<tr>
+                        <td>".$row['customer_id']."</td>
+                        <td>".$row['username']."</td>
+                        <td>".$row['address']."</td>
+                        
+                    </tr>";
+        }
+    }
+    else {
+        $html .= "<tr><td colspan='6'>No results</td></tr>";
+    }
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
-            $image = $row['dish_id'] . ".jpg"; // Assuming the image file name is constructed using dish id
+            // Assuming the image file name is constructed using dish id
             $html .= "<tr>
+                        <td>".$row['dish_id']."</td>
                         <td>".$row['dish_name']."</td>
                         <td>".$row['cuisine']."</td>
                         <td>".$row['ingredients']."</td>
                         <td>".$row['veg_or_nonveg']."</td>
-                        <td><img src='$image' alt='".$row['dish_name']."' width='200' height='200'></td>
-                        <td>
-                            <span>".$row['quantity']."</span>
-                            <button onclick='updateQuantity(\"".$row['dish_id']."\", -1)'>-</button>
-                            <button onclick='updateQuantity(\"".$row['dish_id']."\", 1)'>+</button>
-                        </td>
+                        <td>".$row['price']."</td>
+                        <td>".$row['quantity']."</td>
+                        
                     </tr>";
         }
     } else {
