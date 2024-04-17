@@ -29,7 +29,9 @@ if ($filter == "vegetarian") {
 } elseif ($filter == "nonvegetarian") {
     $sql .= " AND veg_or_nonveg = 'Non-Vegetarian'";
 }
+
 $result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +43,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="availabledishes.css">
 </head>
 <body>
-    <header>
+    <header class="header">
         <nav class="navbar">
             <img src="logo.png" alt="" class="smalllogo">
             <ul class="nav-links">
@@ -52,35 +54,39 @@ $result = $conn->query($sql);
             </ul>
         </nav>
     </header>
+    <div class="content">
 
-    <div class="filters">
-        <a href="availabledishes.php">All</a>
-        <a href="availabledishes.php?filter=vegetarian">Vegetarian</a>
-        <a href="availabledishes.php?filter=nonvegetarian">Non-Vegetarian</a>
-    </div>
+        <div class="filters">
+            <a href="availabledishes.php" <?php if (empty($filter)) echo 'class="active"'; ?>>All</a>
+            <a href="availabledishes.php?filter=vegetarian" <?php if ($filter === "vegetarian") echo 'class="active"'; ?>>Vegetarian</a>
+            <a href="availabledishes.php?filter=nonvegetarian" <?php if ($filter === "nonvegetarian") echo 'class="active"'; ?>>Non-Vegetarian</a>
+        </div>
 
-    <div class="grid-container">
-        <?php
-        // Display dishes in a grid view
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo '<div class="grid-item">';
-                echo '<img src="' . $row["image"] . '" alt="' . $row["dish_name"] . '">';
-                echo '<h3>' . $row["dish_name"] . '</h3>';
-                echo '<p>' . $row["cuisine"] . '</p>';
-                echo '<p>' . $row["ingredients"] . '</p>';
-                echo '<p>' . $row["veg_or_nonveg"] . '</p>';
-                echo '<p>$' . $row["price"] . '</p>';
-                echo '<form method="post">';
-                echo '<input type="hidden" name="dish_id" value="' . $row["dish_id"] . '">';
-                echo '<input type="submit" name="add_to_cart" value="Add to Cart">';
-                echo '</form>';
-                echo '</div>';
+        
+
+        <div class="grid-container">
+            <?php
+            // Display dishes in a grid view
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="grid-item">';
+                    echo '<img src="' . $row["image"] . '" alt="' . $row["dish_name"] . '">';
+                    echo '<h3>' . $row["dish_name"] . '</h3>';
+                    echo '<p>' . $row["cuisine"] . '</p>';
+                    echo '<p>' . $row["ingredients"] . '</p>';
+                    echo '<p>' . $row["veg_or_nonveg"] . '</p>';
+                    echo '<p>$' . $row["price"] . '</p>';
+                    echo '<form method="post">';
+                    echo '<input type="hidden" name="dish_id" value="' . $row["dish_id"] . '">';
+                    echo '<input type="submit" name="add_to_cart" value="Add to Cart">';
+                    echo '</form>';
+                    echo '</div>';
+                }
+            } else {
+                echo "<p>No dishes available.</p>";
             }
-        } else {
-            echo "<p>No dishes available.</p>";
-        }
-        ?>
+            ?>
+        </div>
     </div>
 </body>
 </html>
