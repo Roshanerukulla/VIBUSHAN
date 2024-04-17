@@ -36,9 +36,7 @@
     include 'dbconnection.php';
     
     $html = "<html><table style='width:100%' border='1px solid black'><tr>
-        <th>customer_id</th>
-        <th>username</th>
-        <th>address</th>
+        
         <th>dish_id</th>
         <th>dish_name</th>
         <th>cuisine</th>
@@ -49,24 +47,11 @@
       </tr>";
     
     $sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";
-    $sql1 = "SELECT customer_id, username, address FROM customers";
+    
     $result = mysqli_query($conn, $sql);
-    $result1 = mysqli_query($conn, $sql1);
+    
 
-    if (mysqli_num_rows($result1) > 0) {
-        while($row = mysqli_fetch_assoc($result1)) {
-            // Assuming the image file name is constructed using dish id
-            $html .= "<tr>
-                        <td>".$row['customer_id']."</td>
-                        <td>".$row['username']."</td>
-                        <td>".$row['address']."</td>
-                        
-                    </tr>";
-        }
-    }
-    else {
-        $html .= "<tr><td colspan='6'>No results</td></tr>";
-    }
+    
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
             // Assuming the image file name is constructed using dish id
