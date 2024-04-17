@@ -47,10 +47,10 @@ $result = $conn->query($sql);
         <nav class="navbar">
             <img src="logo.png" alt="" class="smalllogo">
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href= "home.html">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="customer_sign_in.html">Logout</a></li>
             </ul>
         </nav>
     </header>
