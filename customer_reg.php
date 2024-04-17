@@ -9,8 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirmPassword = $_POST["confirm-password"];
     $address = $_POST["address"];
 
-   
-
     // Check if password and confirm password match
     if ($password != $confirmPassword) {
         // Passwords don't match
@@ -23,13 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $conn->real_escape_string($password);
     $address = $conn->real_escape_string($address);
 
-    // Perform database operation to save manager email
-    // Construct the SQL query with escaped variables
+    // Perform database operation to save customer information
     $sql = "INSERT INTO customers (username, password, address) VALUES ('$username', '$password' , '$address')";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
-        echo "customer registered successfully!";
+        // Redirect to customer_sign_in.html
+        header("Location: customer_sign_in.html");
+        exit(); // Exit PHP script after redirect
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

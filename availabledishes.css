@@ -1,76 +1,119 @@
-/* General styles */
+/* Global styles */
 body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
+/* Header styles */
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #000;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.smalllogo {
+    color: #fff;
+    max-width: 80px;
+    max-height: 50px;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+/* Container styles */
+.container {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+}
+
+/* Logo styles */
+.logo img {
+    max-width: 20%;
+    height: auto;
+    border: 2px solid white;
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+/* Buttons styles */
+.buttons {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    width: 200px;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: goldenrod;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: gold;
+}
+
+/* Navigation links styles */
+.nav-links {
+    list-style: none;
+    color: #DAA520;
+    padding: 5px;
+    margin: auto;
+    text-align: right;
+    font-size: 14px;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.nav-links li a {
+    color: #DAA520;
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    color: gold;
+}
+
+/* Grid styles */
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the grid items horizontally */
+    gap: 20px; /* Add spacing between grid items */
     padding: 20px;
 }
 
 .grid-item {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    width: calc(25% - 20px); /* Calculate width with gap included */
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center; /* Center align content */
+    background-color: #f9f9f9; /* Light gray background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow to items */
 }
 
-.grid-item:hover {
-    transform: translateY(-5px);
+.grid-item img {
+    width: 6cm;
+    height: 5cm;
+    object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+    border-radius: 10px; /* Add rounded corners to images */
 }
 
-.dish-image {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
+.filters{
 
-.dish-details {
-    display: none;
-}
-
-/* Show dish details on hover */
-.grid-item:hover .dish-details {
-    display: block;
-}
-
-/* Dish name styles */
-h3 {
-    margin-top: 10px;
-    font-size: 18px;
-    color: #333;
-}
-
-/* Dish price styles */
-.dish-price {
-    margin-top: 5px;
-    font-size: 16px;
-    color: #666;
-}
-
-/* Cart icon styles */
-.cart-icon {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-    vertical-align: middle;
-}
-
-/* Dish cuisine styles */
-.dish-cuisine {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #888;
-}
-
-/* Dish ingredients styles */
-.dish-ingredients {
-    margin-top: 5px;
-    font-size: 14px;
-    color: #888;
+    top: 30px;
 }

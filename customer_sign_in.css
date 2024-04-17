@@ -2,6 +2,9 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
+    background-image: url('foodimages/pizza.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 header {
@@ -33,7 +36,7 @@ header {
     width: 400px;
     margin: 0 auto;
     padding: 50px;
-    background-color:black;
+    background-color:rgba(7, 6, 6, 0.593);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: #DAA520;
@@ -105,11 +108,3 @@ header {
     
 }
 
-.nav-links li a {
-    color: #DAA520;
-    text-decoration: none;
-}
-
-.nav-links li a:hover {
-    color: gold;
-}
