@@ -37,7 +37,7 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Menu</title>
     <link rel="stylesheet" href="availabledishes.css">
