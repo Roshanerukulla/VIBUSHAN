@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="manager_view.css">
+    <link rel="icon" href=
+"logo.png"
+          type="image/x-icon">
     <style>
         .content-container {
             margin-top: 80px; /* Adjust this value to increase/decrease the gap between the navbar and the container */
@@ -23,7 +26,7 @@
             <ul class="nav-links">
               <li><a href="#">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Your Cart</a></li>
+              <li><a href="#">Sessions</a></li>
               <li><a href="manager_sigin_reg.html">Logout</a></li>
             </ul>
           </div>

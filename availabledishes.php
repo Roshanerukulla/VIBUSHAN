@@ -41,6 +41,9 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Menu</title>
     <link rel="stylesheet" href="availabledishes.css">
+    <link rel="icon" href=
+"logo.png"
+          type="image/x-icon">
 </head>
 <body>
     <header class="header">
