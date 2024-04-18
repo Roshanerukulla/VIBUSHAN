@@ -25,7 +25,7 @@
             <ul class="nav-links">
               <li><a href="#">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Options</a></li>
+              <li><a href="#">Your Cart</a></li>
               <li><a href="manager_sigin_reg.html">Logout</a></li>
             </ul>
           </div>
