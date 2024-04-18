@@ -33,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute the query
     if ($conn->query($sql) === TRUE) {
         echo "Password reset successfully!";
+        sleep(3);
+        header("Location: manager_sigin_reg.html");
     } else {
         echo "Error updating record: " . $conn->error;
     }

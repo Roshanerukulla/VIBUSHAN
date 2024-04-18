@@ -1,10 +1,12 @@
 <?php
 session_start();
-// Check if the user is not logged in
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("Location: customer_sign_in.html");
+if (!isset($_SESSION['customer_id'])) {
+    echo "Error: Customer ID not found in session.";
     exit;
 }
+
+// Retrieve customer_id from the session
+$customer_id = $_SESSION['customer_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,14 +25,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="customer_sign_in.html">Logout</a></li>
             </ul>
         </nav>
     </header>
     <div class="container">
-        <h2>What do you want to do today?</h2>
+        <h2>What do you want to do today? <?php echo $_SESSION['customer_id']; ?></h2>
         <div class="buttons">
-            <a href="availabledishes.php" class="button order-now">Order Now</a>
+            <a href="menu.php" class="button order-now">Order Now</a>
             <a href="#" class="button see-past-orders">See Past Orders</a>
         </div>
     </div>

@@ -40,17 +40,20 @@
     
     $html = "<html><table style='width:100%' border='1px solid black'><tr>
         
+        <th>customer_id</th>
+        <th>username</th>
         <th>dish_id</th>
         <th>dish_name</th>
-        <th>cuisine</th>
-        <th>ingredients</th>
-        <th>veg_or_nonveg</th>
-        <th>price</th>
-        <th>quantity</th>
+        <th>quantity_selected</th>
+        <th>date</th>
+        <th>address</th>
       </tr>";
     
-    $sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";
-    
+    //$sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";
+    $sql = "SELECT ci.customer_id, c.username, ci.dish_id, ad.dish_name, ci.quantity_selected, ci.date, c.address FROM customer_info ci 
+    JOIN customers c ON ci.customer_id = c.customer_id 
+    JOIN alldishes ad ON ci.dish_id = ad.dish_id";
+
     $result = mysqli_query($conn, $sql);
     
 
@@ -59,13 +62,13 @@
         while($row = mysqli_fetch_assoc($result)) {
             // Assuming the image file name is constructed using dish id
             $html .= "<tr>
+                        <td>".$row['customer_id']."</td>
+                        <td>".$row['username']."</td>
                         <td>".$row['dish_id']."</td>
                         <td>".$row['dish_name']."</td>
-                        <td>".$row['cuisine']."</td>
-                        <td>".$row['ingredients']."</td>
-                        <td>".$row['veg_or_nonveg']."</td>
-                        <td>".$row['price']."</td>
-                        <td>".$row['quantity']."</td>
+                        <td>".$row['quantity_selected']."</td>
+                        <td>".$row['date']."</td>
+                        <td>".$row['address']."</td>
                         
                     </tr>";
         }

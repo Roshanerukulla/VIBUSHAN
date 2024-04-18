@@ -1,39 +1,30 @@
 <?php
-session_start();
+session_start(); // Start the session
 
 // Include database connection file
 include 'dbconnection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    // Retrieve values from form
+    $email = $_POST['username'];
+    $password = $_POST['password'];
 
-    try {
-        // Prepare SQL statement to select user with provided username and password
-        $stmt = $conn->prepare("SELECT * FROM customers WHERE username = :username AND password = :password");
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->execute();
+    // SQL query to check if email and password exist in the database
+    $sql = "SELECT customer_id, username, password FROM customers WHERE username = '$email' AND password = '$password'";
+    $result = mysqli_query($conn, $sql);
 
-        // Check if user exists and credentials are correct
-        if ($stmt->rowCount() == 1) {
-            // Authentication successful, set session variable
-            $_SESSION["loggedin"] = true;
-            // Redirect to the customer query page after successful login
-            header("Location: customer_query_page.html");
-            exit;
-        } else {
-            // Authentication failed, redirect to sign-in page with error message
-            header("Location: customer_sign_in.html?error=invalid_credentials");
-            exit;
-        }
-    } catch (PDOException $e) {
-        // Handle database connection error
-        echo "Error: " . $e->getMessage();
+    // If user exists, set session variables and redirect to home page
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result); // Fetch the row from the result set
+
+        // Set session variable
+        $_SESSION['customer_id'] = $row['customer_id'];
+
+        // Redirect to home page
+        header("Location: custome_query_page.php");
+        exit();
+    } else {
+        echo "Invalid email or password"; // Show error message
     }
-
-    // Close connection
-    $conn = null;
 }
 ?>

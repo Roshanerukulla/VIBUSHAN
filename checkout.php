@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="manager_view.css">
-    <link rel="icon" href=
-"logo.png"
-          type="image/x-icon">
+    <link rel="icon" href="logo.png" type="image/x-icon">
     <style>
         .content-container {
             margin-top: 80px; /* Adjust this value to increase/decrease the gap between the navbar and the container */
@@ -32,86 +30,96 @@
         </nav>
       </header>
 
-      
+      <div class="container content-container">
+        <?php
+        session_start(); // Start the session
+        include 'dbconnection.php';
 
-<div class="container content-container">
+        // Get the customer_id from the session
+        $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0;
+        echo "Selected Dishes: ";
 
-<?php
-session_start(); // Start the session
-include 'dbconnection.php';
+        // Check if the dishes array exists in the session and is not empty
+        if (isset($_SESSION['selected_dishes']) && !empty($_SESSION['selected_dishes'])) {
+            $selectedDishes = $_SESSION['selected_dishes'];
+            echo "<h2>Checkout</h2>";
+            echo "<table>";
+            echo "<thead><tr><th>Dish Name</th><th>Quantity</th><th>Price</th><th>Total</th><th>Action</th></tr></thead>";
+            echo "<tbody>";
+            $grandTotal = 0;
+            $selectedDishes = array_filter($_SESSION['selected_dishes'], function($value) {
+                return !is_null($value) && $value !== '';
+            });
+            foreach ($selectedDishes as $dishId => $quantity) {
+                // Fetch dish details from the database
+                $sql = "SELECT dish_name, price FROM alldishes WHERE dish_id = $dishId";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $dishName = $row['dish_name'];
+                $price = $row['price'];
+                $total = $quantity * $price;
+                $grandTotal += $total;
+                echo "<tr>
+                        <td>$dishName</td>
+                        <td>$quantity</td>
+                        <td>$price</td>
+                        <td>$total</td>
+                        <td><button onclick='removeDish($dishId)'>Remove</button></td>
+                      </tr>";
+            }
+            echo "<tr class='total'>
+                    <td colspan='3'>Grand Total</td>
+                    <td>$grandTotal</td>
+                    <td></td>
+                  </tr>";
+            echo "</tbody></table>";
 
-// Check if the dishes array exists in the session and is not empty
-if (isset($_SESSION['selected_dishes']) && !empty($_SESSION['selected_dishes'])) {
-    $selectedDishes = $_SESSION['selected_dishes'];
-    echo "<h2>Checkout</h2>";
-    echo "<table>";
-    echo "<thead><tr><th>Dish Name</th><th>Quantity</th><th>Price</th><th>Total</th><th>Action</th></tr></thead>";
-    echo "<tbody>";
-    $grandTotal = 0;
-    foreach ($selectedDishes as $dishId => $quantity) {
-        // Fetch dish details from the database
-        $sql = "SELECT dish_name, price, quantity FROM alldishes WHERE dish_id = $dishId and quantity > 0";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $dishName = $row['dish_name'];
-        $price = $row['price'];
-        $currentQuantity = $row['quantity'];
-        $total = $currentQuantity * $price;
-        $grandTotal += $total;
-        echo "<tr>
-                <td>$dishName</td>
-                <td>$currentQuantity</td>
-                <td>$price</td>
-                <td>$total</td>
-                <td><button onclick='removeDish($dishId)'>Remove</button></td>
-              </tr>";
-    }
-    echo "<tr class='total'>
-            <td colspan='3'>Grand Total</td>
-            <td>$grandTotal</td>
-            <td></td>
-          </tr>";
-    echo "</tbody></table>";
+            // Button to go back to menu.php
+            echo "<a href='menu.php'><button>Back to Menu</button></a>";
 
-    // Button to go back to menu.php
-    echo "<a href='menu.php'><button>Back to Menu</button></a>";
-} else {
-    echo "<p>No dishes selected for checkout.</p>";
-    echo "<a href='menu.php'><button>Back to Menu</button></a>";
-}
-mysqli_close($conn);
-?>
-
-<script>
-function updateQuantity(dishId, quantity) {
-    // AJAX request to update quantity in session variable
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // Reload the page to reflect the changes
-            location.reload();
+            // Place Order form
+            echo "<form id='placeOrderForm' method='post' action='update_customer_info.php'>";
+            echo "<input type='hidden' name='placeOrder' value='1'>";
+            echo "<input type='hidden' name='customer_id' value='$customer_id'>";
+            echo "<button type='submit'>Place Order</button>";
+            echo "</form>";
+        } else {
+            echo "<p>No dishes selected for checkout.</p>";
+            echo "<a href='menu.php'><button>Back to Menu</button></a>";
         }
-    };
-    xhr.open("POST", "update_quantity_session.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("dish_id=" + dishId + "&change=" + (quantity - <?php echo isset($_SESSION['selected_dishes'][$dishId]) ? $_SESSION['selected_dishes'][$dishId] : 0; ?>));
-}
+        mysqli_close($conn);
+        ?>
 
-function removeDish(dishId) {
-    // AJAX request to remove dish from session variable
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // Reload the page to reflect the changes
-            location.reload();
+        <script>
+        function updateQuantity(dishId, quantity) {
+            // AJAX request to update quantity in session variable
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Reload the page to reflect the changes
+                    location.reload();
+                }
+            };
+            xhr.open("POST", "update_quantity_session.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("dish_id=" + dishId + "&change=" + (quantity - <?php echo isset($_SESSION['selected_dishes'][$dishId]) ? $_SESSION['selected_dishes'][$dishId] : 0; ?>));
         }
-    };
-    xhr.open("POST", "remove_dish_session.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("dish_id=" + dishId);
-}
-</script>
 
-</div>
+        function removeDish(dishId) {
+            // AJAX request to remove dish from session variable
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Reload the page to reflect the changes
+                    location.reload();
+                }
+            };
+            xhr.open("POST", "remove_dish_session.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("dish_id=" + dishId);
+        }
+        </script>
+
+      </div>
 </body>
 </html>
