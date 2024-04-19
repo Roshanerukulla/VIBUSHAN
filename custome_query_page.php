@@ -33,7 +33,7 @@ $customer_id = $_SESSION['customer_id'];
         <h2>What do you want to do today? <?php echo $_SESSION['customer_id']; ?></h2>
         <div class="buttons">
             <a href="menu.php" class="button order-now">Order Now</a>
-            <a href="#" class="button see-past-orders">See Past Orders</a>
+            <a href="past_orders.php" class="button see-past-orders">See Past Orders</a>
         </div>
     </div>
 </body>

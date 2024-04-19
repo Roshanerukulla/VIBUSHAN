@@ -47,12 +47,13 @@
         <th>quantity_selected</th>
         <th>date</th>
         <th>address</th>
+        <th>status</th>
       </tr>";
     
     //$sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";
-    $sql = "SELECT ci.customer_id, c.username, ci.dish_id, ad.dish_name, ci.quantity_selected, ci.date, c.address FROM customer_info ci 
+    $sql = "SELECT ci.customer_id, c.username, ci.dish_id, ad.dish_name, ci.quantity_selected, ci.date, c.address, ci.status FROM customer_info ci 
     JOIN customers c ON ci.customer_id = c.customer_id 
-    JOIN alldishes ad ON ci.dish_id = ad.dish_id";
+    JOIN alldishes ad ON ci.dish_id = ad.dish_id WHERE ci.status = 'In progress'";
 
     $result = mysqli_query($conn, $sql);
     
@@ -69,7 +70,8 @@
                         <td>".$row['quantity_selected']."</td>
                         <td>".$row['date']."</td>
                         <td>".$row['address']."</td>
-                        
+                        <td>".$row['status']."</td>
+                        <td><button onclick='updateStatus(".$row['customer_id'].")'>Mark as Done</button></td>
                     </tr>";
         }
     } else {
@@ -96,7 +98,19 @@
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("dish_id=" + dishId + "&change=" + change);
     }
-    
+    function updateStatus(customerId) {
+    // AJAX request to update status in the database
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Reload the page after successful update
+            location.reload();
+        }
+    };
+    xhr.open("POST", "update_status.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("customer_id=" + customerId);
+}
     
     </script>
     

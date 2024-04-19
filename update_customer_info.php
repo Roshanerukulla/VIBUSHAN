@@ -17,7 +17,7 @@ if (isset($_SESSION['selected_dishes'][$dish_id])) {
 // Check if the user has clicked the "Place Order" button
 if (isset($_POST['placeOrder'])) {
     // Get the current date
-    $date = date('Y-m-d');
+    $date = date('Y-m-d H:i:s');
 
     // Loop through the selected dishes and insert into the customer_info table
     foreach ($_SESSION['selected_dishes'] as $dish_id => $quantity) {
