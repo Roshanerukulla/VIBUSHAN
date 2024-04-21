@@ -8,10 +8,56 @@
     <link rel="stylesheet" href="manager_view.css">
     <link rel="icon" href="logo.png" type="image/x-icon">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+       
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
         .content-container {
-            margin-top: 80px; /* Adjust this value to increase/decrease the gap between the navbar and the container */
             padding: 20px;
             background-color: #f9f9f9;
+            margin-top: 80px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            font-weight: bold;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -21,10 +67,10 @@
           <div class="container">
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
-              <li><a href="#">Home</a></li>
+              <li><a href="custome_query_page.php">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Your Cart</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="checkout.php">Your Cart</a></li>
+              <li><a href="customer_sign_in.html">Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -42,7 +88,7 @@
         // Check if the dishes array exists in the session and is not empty
         if (isset($_SESSION['selected_dishes']) && !empty($_SESSION['selected_dishes'])) {
             $selectedDishes = $_SESSION['selected_dishes'];
-            echo "<h2>Checkout</h2>";
+            
             echo "<table>";
             echo "<thead><tr><th>Dish Name</th><th>Quantity</th><th>Price</th><th>Total</th><th>Action</th></tr></thead>";
             echo "<tbody>";

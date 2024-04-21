@@ -43,6 +43,44 @@
             padding: 5px 10px;
             font-size: 16px;
         }
+        .content-container {
+            margin-top: 150px; /* Adjust as needed */
+            padding: 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .dish-card {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .dish-card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        .dish-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        #checkoutButton {
+            position: fixed;
+            top: 80px; /* Adjust as needed */
+            right: 20px; /* Adjust as needed */
+            z-index: 1000;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -51,10 +89,10 @@
           <div class="container">
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
-              <li><a href="#">Home</a></li>
+              <li><a href="custome_query_page.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="checkout.php">Your Cart</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="customer_sign_in.html">Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -78,7 +116,7 @@ if (!isset($_SESSION['selected_dishes'])) {
 
 // Check if the customer_id is set in the session
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0;
-echo $customer_id; // For debugging purposes
+
 
 $sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, 0 AS quantity FROM alldishes WHERE available = 'Available'";
 $result = mysqli_query($conn, $sql);

@@ -17,12 +17,65 @@ $customer_id = $_SESSION['customer_id'];
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="stylesheet" href="customer_query_page.css">
 </head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .content-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .no-results {
+            text-align: center;
+            color: #777;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
 <body>
     <header>
         <nav class="navbar">
             <img src="logo.png" alt="" class="smalllogo">
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="custome_query_page.php">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="customer_sign_in.html">Logout</a></li>
@@ -79,6 +132,7 @@ $customer_id = $_SESSION['customer_id'];
     </script>
     
     </div>
+    <a href="custome_query_page.php" class="back-button">Back</a>
     </div>
 </body>
 </html>

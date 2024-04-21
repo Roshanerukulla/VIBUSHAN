@@ -22,7 +22,7 @@ $customer_id = $_SESSION['customer_id'];
         <nav class="navbar">
             <img src="logo.png" alt="" class="smalllogo">
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="custome_query_page.php">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="customer_sign_in.html">Logout</a></li>

@@ -10,11 +10,54 @@
     <link rel="icon" href=
 "logo.png"
           type="image/x-icon">
-    <style>
+          <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
         .content-container {
             margin-top: 80px; /* Adjust this value to increase/decrease the gap between the navbar and the container */
             padding: 20px;
             background-color: #f9f9f9;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .no-results {
+            text-align: center;
+            color: #777;
+        }
+        .update-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .update-button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -24,7 +67,7 @@
           <div class="container">
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
-              <li><a href="#">Home</a></li>
+              <li><a href="manager_view.html">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Sessions</a></li>
               <li><a href="manager_sigin_reg.html">Logout</a></li>
@@ -48,6 +91,7 @@
         <th>date</th>
         <th>address</th>
         <th>status</th>
+        <th>Update Status</th>
       </tr>";
     
     //$sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";

@@ -9,11 +9,58 @@
     <link rel="icon" href=
 "logo.png"
           type="image/x-icon">
-    <style>
+          <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
         .content-container {
             margin-top: 80px; /* Adjust this value to increase/decrease the gap between the navbar and the container */
             padding: 20px;
             background-color: #f9f9f9;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .no-results {
+            text-align: center;
+            color: #777;
+        }
+        .update-button {
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .available {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+        }
+        .not-available {
+            background-color: #FF5733;
+            border: none;
+            color: white;
         }
     </style>
 </head>
@@ -23,9 +70,9 @@
           <div class="container">
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
-              <li><a href="#">Home</a></li>
+              <li><a href="manager_view.html">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Your Cart</a></li>
+              <li><a href="#">Sessions</a></li>
               <li><a href="manager_sigin_reg.html">Logout</a></li>
             </ul>
           </div>
@@ -44,6 +91,7 @@ $html = "<html><table style='width:100%' border='1px solid black'><tr>
     <th>ingredients</th>
     <th>veg_or_nonveg</th>
     <th>dish_id</th>
+    <th>dish availability</th>
     <th>is_available</th>
   </tr>";
 
@@ -60,11 +108,13 @@ if (mysqli_num_rows($result) > 0) {
                     <td>".$row['ingredients']."</td>
                     <td>".$row['veg_or_nonveg']."</td>
                     <td>".$row['dish_id']."</td>
-                    
+                    <td>".$row['available']."</td>
                     <td>
                     <span>".$row['is_available']."</span>
-                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"Not Available\")'>Not Available</button>
-                    <button onclick='updateAvailability(\"".$row['dish_id']."\", \"Available\")'>Available</button>
+                    <button class='update-button not-available' onclick='updateAvailability(\"".$row['dish_id']."\", \"Not Available\")'>Not Available</button>
+                    <button class='update-button available' onclick='updateAvailability(\"".$row['dish_id']."\", \"Available\")'>Available</button>
+
+                    
                     </td>
                 </tr>";
     }
