@@ -32,6 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         echo "Invalid email or password"; // Show error message
+        echo "<meta http-equiv='refresh' content='2;url=manager_sigin_reg.html'>";
+        exit; // Stop further execution
     }
 }
 
