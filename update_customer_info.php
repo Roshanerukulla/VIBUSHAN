@@ -25,7 +25,7 @@ if (isset($_POST['placeOrder'])) {
             $sql = "INSERT INTO customer_info (customer_id, dish_id, quantity_selected, date) VALUES ($customer_id, $dish_id, $quantity, '$date')";
             mysqli_query($conn, $sql);
             sleep(3);
-            header("Location: custome_query_page.php");
+            header("Location: finalpage.html");
         }
     }
 
