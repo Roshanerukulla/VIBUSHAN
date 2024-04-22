@@ -5,6 +5,9 @@ if (!isset($_SESSION['manager_email'])) {
     exit;
 }
 ?>
+// Clear the logged_out session variable (optional)
+unset($_SESSION['logged_out']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +28,28 @@ if (!isset($_SESSION['manager_email'])) {
                 // Clear the session and redirect to the login page
                 window.location.href = "logoutm.php";
             });
+            
+            function checkLoginStatus() {
+            <?php
+            // Check if the session variable indicating logout exists
+            if (isset($_SESSION['logged_out']) && $_SESSION['logged_out']) {
+                // Clear the session variable
+                unset($_SESSION['logged_out']);
+                // Redirect to the login page
+                echo 'window.location.href = "manager_sigin_reg.html";';
+            }
+            ?>
+        }
+
+        // Call the function on page load
+        checkLoginStatus();
+
+        // Disable back navigation after logout
+        window.addEventListener("popstate", function(event) {
+            // Revert the history change to prevent back navigation
+            history.pushState(null, document.title, location.href);
+        });
+    
         </script>
 </head>
 <body>
