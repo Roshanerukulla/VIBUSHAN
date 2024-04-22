@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['manager_email'])) {
+    header("Location: manager_sigin_reg.html");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +19,13 @@
     <link rel="icon" href=
 "logo.png"
           type="image/x-icon">
+          <script>
+            // Disable back button functionality after logging out
+            window.addEventListener('beforeunload', function(event) {
+                // Clear the session and redirect to the login page
+                window.location.href = "logoutm.php";
+            });
+        </script>
 </head>
 <body>
     <header>
@@ -22,7 +36,7 @@
               <li><a href="manager_view.html">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Services</a></li>
-              <li><a href="manager_sigin_reg.html">Logout</a></li>
+              <li><a href="logoutm.php">Logout</a></li>
             </ul>
           </div>
         </nav>

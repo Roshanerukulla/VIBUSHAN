@@ -70,10 +70,10 @@
           <div class="container">
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
-              <li><a href="manager_view.html">Home</a></li>
+              <li><a href="manager_view.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Sessions</a></li>
-              <li><a href="manager_sigin_reg.html">Logout</a></li>
+              <li><a href="logoutm.php">Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -84,6 +84,12 @@
 <div class="container content-container">
 <?php
 include 'dbconnection.php';
+
+session_start();
+if (!isset($_SESSION['manager_email'])) {
+    header("Location: manager_sigin_reg.html");
+    exit;
+}
 
 $html = "<html><table style='width:100%' border='1px solid black'><tr>
     <th>dishname</th>

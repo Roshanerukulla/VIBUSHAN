@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['manager_email'] = $email;
         
         // Redirect to home page
-        header("Location: manager_view.html");
+        header("Location: manager_view.php");
         exit();
     } else {
         echo "Invalid email or password"; // Show error message

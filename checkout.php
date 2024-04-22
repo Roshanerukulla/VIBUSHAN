@@ -70,7 +70,7 @@
               <li><a href="custome_query_page.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="checkout.php">Your Cart</a></li>
-              <li><a href="customer_sign_in.html">Logout</a></li>
+              <li><a href="logout.php">Logout</a></li>
             </ul>
           </div>
         </nav>

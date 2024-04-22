@@ -2,6 +2,7 @@
 session_start();
 if (!isset($_SESSION['customer_id'])) {
     echo "Error: Customer ID not found in session.";
+    echo "<meta http-equiv='refresh' content='2;url=customer_sign_in.html'>";
     exit;
 }
 
@@ -35,7 +36,7 @@ $customer_id = $_SESSION['customer_id'];
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            margin-top: 80px;
         }
         table {
             width: 100%;
@@ -78,7 +79,7 @@ $customer_id = $_SESSION['customer_id'];
                 <li><a href="custome_query_page.php">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="customer_sign_in.html">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>

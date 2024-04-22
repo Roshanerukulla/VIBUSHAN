@@ -92,7 +92,7 @@
               <li><a href="custome_query_page.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="checkout.php">Your Cart</a></li>
-              <li><a href="customer_sign_in.html">Logout</a></li>
+              <li><a href="logout.php">Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -108,6 +108,16 @@
       <?php
 session_start(); // Start the session
 include 'dbconnection.php';
+
+
+if (!isset($_SESSION['customer_id'])) {
+    echo "Error: Customer ID not found in session.";
+    echo "<meta http-equiv='refresh' content='2;url=customer_sign_in.html'>";
+    exit;
+}
+
+// Retrieve customer_id from the session
+$customer_id = $_SESSION['customer_id'];
 
 // Check if the session variable is set
 if (!isset($_SESSION['selected_dishes'])) {

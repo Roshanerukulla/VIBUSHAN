@@ -2,6 +2,7 @@
 session_start();
 if (!isset($_SESSION['customer_id'])) {
     echo "Error: Customer ID not found in session.";
+    echo "<meta http-equiv='refresh' content='2;url=customer_sign_in.html'>";
     exit;
 }
 
@@ -16,6 +17,13 @@ $customer_id = $_SESSION['customer_id'];
     <title>Customer Query Page</title>
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="stylesheet" href="customer_query_page.css">
+    <script>
+        // Disable back button functionality after logging out
+        window.addEventListener('beforeunload', function(event) {
+            // Clear the session and redirect to the login page
+            window.location.href = "logout.php";
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -25,12 +33,13 @@ $customer_id = $_SESSION['customer_id'];
                 <li><a href="custome_query_page.php">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="customer_sign_in.html">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
+                <!-- <li><a href="customer_sign_in.html" onclick="window.onunload();">Logout</a></li> -->
             </ul>
         </nav>
     </header>
     <div class="container">
-        <h2>What do you want to do today? <?php echo $_SESSION['customer_id']; ?></h2>
+        <h2>What do you want to do today?</h2>
         <div class="buttons">
             <a href="menu.php" class="button order-now">Order Now</a>
             <a href="past_orders.php" class="button see-past-orders">See Past Orders</a>
