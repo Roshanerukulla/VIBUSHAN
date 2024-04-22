@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_query($conn, $update_query)) {
         // Password updated successfully, redirect to a success page
         echo "Your password has been reset.";
-        header("Location: password_reset_success.html");
+        header("Location: customer_sign_in.html");
         exit();
     } else {
         // Error updating password, redirect back to reset password page with error message

@@ -68,8 +68,8 @@
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
               <li><a href="custome_query_page.php">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="checkout.php">Your Cart</a></li>
+              <li><a href="aboutus.html">About</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
               <li><a href="logout.php">Logout</a></li>
             </ul>
           </div>
