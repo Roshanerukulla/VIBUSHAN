@@ -31,8 +31,8 @@ $customer_id = $_SESSION['customer_id'];
             <img src="logo.png" alt="" class="smalllogo">
             <ul class="nav-links">
                 <li><a href="custome_query_page.php">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li><a href="logout.php">Logout</a></li>
                 <!-- <li><a href="customer_sign_in.html" onclick="window.onunload();">Logout</a></li> -->
             </ul>

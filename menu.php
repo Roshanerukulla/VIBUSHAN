@@ -35,6 +35,7 @@
             object-fit: cover;
         }
         .filter-buttons {
+            margin-top: 100px; 
             text-align: center;
             margin-bottom: 20px;
         }
@@ -90,7 +91,7 @@
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
               <li><a href="custome_query_page.php">Home</a></li>
-              <li><a href="#">About</a></li>
+              <li><a href="aboutus.html">About</a></li>
               <li><a href="checkout.php">Your Cart</a></li>
               <li><a href="logout.php">Logout</a></li>
             </ul>
@@ -100,9 +101,10 @@
 
       <div class="filter-buttons">
         <button onclick="filterDishes('all')">All</button>
-        <button onclick="filterDishes('veg')">Veg</button>
-        <button onclick="filterDishes('non-veg')">Non-Veg</button>
+        <button onclick="filterDishes('Vegetarian')">Veg</button>
+        <button onclick="filterDishes('Non-Vegetarian')">Non-Veg</button>
       </div>
+ 
 
       <div class="container content-container">
       <?php
@@ -187,12 +189,12 @@ mysqli_close($conn);
     function filterDishes(filter) {
         var dishCards = document.getElementsByClassName("dish-card");
         for (var i = 0; i < dishCards.length; i++) {
-            var dishType = dishCards[i].querySelector("p:nth-child(4)").innerText.toLowerCase();
+            var dishType = dishCards[i].querySelector("p:nth-child(3)").innerText.trim(); // Trim excess whitespace
+            // Extract dish type by removing "Type: " from the beginning of the text
+            dishType = dishType.replace("Type: ", "");
             if (filter === "all") {
                 dishCards[i].style.display = "block";
-            } else if (filter === "veg" && dishType === "veg") {
-                dishCards[i].style.display = "block";
-            } else if (filter === "non-veg" && dishType === "non-veg") {
+            } else if (dishType.toLowerCase() === filter.toLowerCase()) {
                 dishCards[i].style.display = "block";
             } else {
                 dishCards[i].style.display = "none";

@@ -106,12 +106,18 @@ color:gold;
                 <input type="email" id="email" name="email" required>
                 <label for="message" style="color: black;">Message:</label>
                 <textarea id="message" name="message" required></textarea>
-                <button type="submit" style="background-color:goldenrod ;">Send Message</button>
+                <button type="submit" style="background-color:goldenrod ;"  onclick="redirectToQueryPage()">Send Message</button>
             </form>
         </div>
     </div>
     <div class="footer">
         <p>&copy; 2024 Vibushan Restaurant. All rights reserved.</p>
     </div>
+
+    <script>
+        function redirectToQueryPage() {
+          window.location.href = 'custome_query_page.php';
+        }
+        </script>
 </body>
 </html>

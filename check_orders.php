@@ -68,8 +68,8 @@
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
               <li><a href="manager_view.php">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Sessions</a></li>
+              <li><a href="aboutus.html">About</a></li>
+              
               <li><a href="logoutm.php">Logout</a></li>
             </ul>
           </div>
