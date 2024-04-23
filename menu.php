@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10">
+    <!-- <meta http-equiv="refresh" content="10"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="manager_view.css">
@@ -122,6 +122,8 @@
     <a href="menu.php?filter=nonvegetarian" <?php if ($filter === "nonvegetarian") echo 'class="active"'; ?>>Non-Vegetarian</a>
 </div>
 
+
+
       <div class="container content-container">
       <?php
 session_start(); // Start the session
@@ -146,18 +148,30 @@ if (!isset($_SESSION['selected_dishes'])) {
 }
 
 // Filter dishes based on vegetarian or non-vegetarian
-$filter = "";
-if (isset($_GET['filter'])) {
-    $filter = $_GET['filter'];
-}
+$filter = isset($_GET['filter']) ? $_GET['filter'] : "";
 
-$sql = "SELECT * FROM alldishes WHERE available = 'Available'";
+// Define the SQL query with conditional filtering
+$sql = "SELECT 
+            dish_id, 
+            dish_name, 
+            cuisine, 
+            ingredients, 
+            veg_or_nonveg, 
+            price, 
+            0 AS quantity 
+        FROM 
+            alldishes 
+        WHERE 
+            available = 'Available'";
+
+// Apply conditional filtering based on the $filter value
 if ($filter == "vegetarian") {
     $sql .= " AND veg_or_nonveg = 'Vegetarian'";
 } elseif ($filter == "nonvegetarian") {
     $sql .= " AND veg_or_nonveg = 'Non-Vegetarian'";
 }
 
+// Execute the SQL query
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
