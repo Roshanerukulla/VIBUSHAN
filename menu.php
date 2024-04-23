@@ -33,19 +33,33 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-        }
-        .filter-buttons {
-            margin-top: 100px; 
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .filter-buttons button {
-            margin: 0 10px;
-            padding: 5px 10px;
-            font-size: 16px;
-        }
+        }.filter-buttons {
+            padding-top: 70px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filter-buttons a {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.filter-buttons a.active {
+    background-color: #666;
+}
+
+.filter-buttons a:hover {
+    background-color: #555;
+}
+
         .content-container {
-            margin-top: 150px; /* Adjust as needed */
+            margin-top: 50px; /* Adjust as needed */
             padding: 20px;
             background-color: #f9f9f9;
             display: flex;
@@ -63,7 +77,10 @@
             text-align: center;
         }
         .dish-card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+             -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 0.4s ;
         }
         .dish-card img {
             width: 100%;
@@ -82,7 +99,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-    </style>
+      </style>
 </head>
 <body>
     <header>
@@ -100,18 +117,20 @@
       </header>
 
       <div class="filter-buttons">
-        <button onclick="filterDishes('all')">All</button>
-        <button onclick="filterDishes('Vegetarian')">Veg</button>
-        <button onclick="filterDishes('Non-Vegetarian')">Non-Veg</button>
-      </div>
- 
+    <a href="menu.php" <?php if (empty($filter)) echo 'class="active"'; ?>>All</a>
+    <a href="menu.php?filter=vegetarian" <?php if ($filter === "vegetarian") echo 'class="active"'; ?>>Vegetarian</a>
+    <a href="menu.php?filter=nonvegetarian" <?php if ($filter === "nonvegetarian") echo 'class="active"'; ?>>Non-Vegetarian</a>
+</div>
 
       <div class="container content-container">
       <?php
 session_start(); // Start the session
 include 'dbconnection.php';
 
+// Retrieve the filter parameter from the URL query string
+$filter = isset($_GET['filter']) ? $_GET['filter'] : "";
 
+// Check if the customer ID is set in the session
 if (!isset($_SESSION['customer_id'])) {
     echo "Error: Customer ID not found in session.";
     echo "<meta http-equiv='refresh' content='2;url=customer_sign_in.html'>";
@@ -121,16 +140,24 @@ if (!isset($_SESSION['customer_id'])) {
 // Retrieve customer_id from the session
 $customer_id = $_SESSION['customer_id'];
 
-// Check if the session variable is set
+// Check if the session variable for selected dishes is set
 if (!isset($_SESSION['selected_dishes'])) {
     $_SESSION['selected_dishes'] = array();
 }
 
-// Check if the customer_id is set in the session
-$customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0;
+// Filter dishes based on vegetarian or non-vegetarian
+$filter = "";
+if (isset($_GET['filter'])) {
+    $filter = $_GET['filter'];
+}
 
+$sql = "SELECT * FROM alldishes WHERE available = 'Available'";
+if ($filter == "vegetarian") {
+    $sql .= " AND veg_or_nonveg = 'Vegetarian'";
+} elseif ($filter == "nonvegetarian") {
+    $sql .= " AND veg_or_nonveg = 'Non-Vegetarian'";
+}
 
-$sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, 0 AS quantity FROM alldishes WHERE available = 'Available'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -157,6 +184,7 @@ if (mysqli_num_rows($result) > 0) {
 
 mysqli_close($conn);
 ?>
+
 
 <form action="checkout.php" method="post">
     <button type="submit" name="checkoutButton" id="checkoutButton">Checkout</button>
@@ -187,20 +215,26 @@ mysqli_close($conn);
     }
 
     function filterDishes(filter) {
-        var dishCards = document.getElementsByClassName("dish-card");
-        for (var i = 0; i < dishCards.length; i++) {
-            var dishType = dishCards[i].querySelector("p:nth-child(3)").innerText.trim(); // Trim excess whitespace
-            // Extract dish type by removing "Type: " from the beginning of the text
-            dishType = dishType.replace("Type: ", "");
-            if (filter === "all") {
-                dishCards[i].style.display = "block";
-            } else if (dishType.toLowerCase() === filter.toLowerCase()) {
-                dishCards[i].style.display = "block";
-            } else {
-                dishCards[i].style.display = "none";
+            var dishCards = document.getElementsByClassName("dish-card");
+            for (var i = 0; i < dishCards.length; i++) {
+                var dishType = dishCards[i].querySelector("p:nth-child(3)").innerText.trim();
+                dishType = dishType.replace("Type: ", "");
+                if (filter === "all" || dishType.toLowerCase() === filter.toLowerCase()) {
+                    dishCards[i].style.display = "block";
+                } else {
+                    dishCards[i].style.display = "none";
+                }
             }
-        }
     }
+    // Update active state of filter buttons
+    var filterLinks = document.querySelectorAll(".filter-buttons a");
+            filterLinks.forEach(function(link) {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(filter)) {
+                    link.classList.add("active");
+                }
+            });
+        
 </script>
 </body>
 </html>
