@@ -16,13 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Exit PHP script
     }
 
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     // Escape variables to prevent SQL injection
     $username = $conn->real_escape_string($username);
-    $password = $conn->real_escape_string($password);
     $address = $conn->real_escape_string($address);
 
     // Perform database operation to save customer information
-    $sql = "INSERT INTO customers (username, password, address) VALUES ('$username', '$password' , '$address')";
+    $sql = "INSERT INTO customers (username, password, address) VALUES ('$username', '$hashedPassword', '$address')";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
@@ -39,4 +41,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: customer_reg.html");
     exit(); // Exit PHP script
 }
+
 ?>

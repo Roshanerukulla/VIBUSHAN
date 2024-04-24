@@ -9,24 +9,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['username'];
     $password = $_POST['password'];
 
-    // SQL query to check if email and password exist in the database
-    $sql = "SELECT customer_id, username, password FROM customers WHERE username = '$email' AND password = '$password'";
+    // SQL query to retrieve hashed password from database
+    $sql = "SELECT customer_id, username, password FROM customers WHERE username = '$email'";
     $result = mysqli_query($conn, $sql);
 
-    // If user exists, set session variables and redirect to home page
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result); // Fetch the row from the result set
 
-        // Set session variable
-        $_SESSION['customer_id'] = $row['customer_id'];
-
-        // Redirect to home page
-        header("Location: custome_query_page.php");
-        exit();
+        // Verify the password
+        if (password_verify($password, $row['password'])) {
+            // Password is correct, set session variable and redirect to home page
+            $_SESSION['customer_id'] = $row['customer_id'];
+            header("Location: custome_query_page.php");
+            exit();
+        } else {
+            // Password is incorrect, show error message
+            echo "Invalid email or password";
+            echo "<meta http-equiv='refresh' content='2;url=customer_sign_in.html'>";
+            exit;
+        }
     } else {
-        echo "Invalid email or password"; // Show error message
+        // User does not exist, show error message
+        echo "Invalid email or password";
         echo "<meta http-equiv='refresh' content='2;url=customer_sign_in.html'>";
-    exit; // Stop further execution
+        exit;
     }
 }
+
 ?>

@@ -14,10 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Update the password in the database using prepared statement
+    // Hash the new password
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+    // Update the hashed password in the database using prepared statement
     $sql = "UPDATE customers SET password = ? WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $new_password, $username);
+    $stmt->bind_param("ss", $hashed_password, $username);
     if ($stmt->execute()) {
         // Password updated successfully, redirect to sign-in page or display a success message
         header("Location: customer_sign_in.html");
@@ -32,4 +35,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // If form is not submitted, redirect to reset password page
 header("Location: reset_password.html");
 exit();
+
 ?>
