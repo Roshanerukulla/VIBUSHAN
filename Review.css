@@ -1,0 +1,61 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.rating {
+    margin-bottom: 20px;
+}
+
+.rating label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.stars {
+    font-size: 24px;
+}
+
+.stars .star {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.stars .star:hover,
+.stars .star:hover ~ .star {
+    color: goldenrod;
+}
+
+.comment label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.comment textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #007bff;
+}
