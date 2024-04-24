@@ -55,7 +55,7 @@
 }
 
 .filter-buttons a:hover {
-    background-color: #555;
+    background-color: goldenrod;
 }
 
         .content-container {
