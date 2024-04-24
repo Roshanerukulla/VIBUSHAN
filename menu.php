@@ -148,6 +148,11 @@ $customer_id = $_SESSION['customer_id'];
 if (!isset($_SESSION['selected_dishes'])) {
     $_SESSION['selected_dishes'] = array();
 }
+// Check if the session variable for selected dishes is set
+
+
+// Retrieve the quantities of selected dishes from the session
+$selectedDishes = $_SESSION['selected_dishes'];
 
 // Filter dishes based on vegetarian or non-vegetarian
 $filter = isset($_GET['filter']) ? $_GET['filter'] : "";
@@ -180,6 +185,7 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $imageFolder = 'foodimages/';
         $image = $row['dish_id'] . ".jpg"; // Assuming the image file name is constructed using dish id
+        $currentQuantity = isset($selectedDishes[$row['dish_id']]) ? $selectedDishes[$row['dish_id']] : 0;
         echo '<div class="dish-card">
                 <img src="' . $imageFolder . $image . '" alt="' . $row['dish_name'] . '">
                 <h3>' . $row['dish_name'] . '</h3>
@@ -188,10 +194,10 @@ if (mysqli_num_rows($result) > 0) {
                 <p>Type: ' . $row['veg_or_nonveg'] . '</p>
                 <p>Price: ' . $row['price'] . '</p>
                 <p>
-                    Quantity: <span id="quantity_' . $row['dish_id'] . '">' . $row['quantity'] . '</span>
-                    <button onclick="updateQuantity(\'' . $row['dish_id'] . '\', -1)">-</button>
-                    <button onclick="updateQuantity(\'' . $row['dish_id'] . '\', 1)">+</button>
-                </p>
+        Quantity: <span id="quantity_' . $row['dish_id'] . '">' . $currentQuantity . '</span>
+        <button onclick="updateQuantity(\'' . $row['dish_id'] . '\', -1)">-</button>
+        <button onclick="updateQuantity(\'' . $row['dish_id'] . '\', 1)">+</button>
+    </p>
             </div>';
     }
 } else {
