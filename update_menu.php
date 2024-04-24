@@ -72,7 +72,7 @@
               <img src="logo.png" alt="" class="logo">
           </a>
             <ul class="nav-links">
-              <li><a href="home.html">Home</a></li>
+              <li><a href="manager_view.php">Home</a></li>
               <li><a href="aboutus.html">About</a></li>
               >
               <li><a href="logoutm.php">Logout</a></li>
