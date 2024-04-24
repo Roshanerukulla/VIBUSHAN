@@ -23,15 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Exit PHP script
     }
 
-    // Escape variables to prevent SQL injection
-    // $email = $conn->real_escape_string($email);
-    // $password = $conn->real_escape_string($password);
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Update password in the database
-    $sql = "UPDATE manager_vibushan SET password = '$password' WHERE email = '$email'";
+    // Prepare SQL statement to update password in the database
+    $sql = "UPDATE manager_vibushan SET password = ? WHERE email = ?";
 
-    // Execute the query
-    if ($conn->query($sql) === TRUE) {
+    // Prepare and bind parameters
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $hashedPassword, $email);
+
+    // Execute the statement
+    if ($stmt->execute()) {
         echo "Password reset successfully!";
         sleep(3);
         header("Location: manager_sigin_reg.html");
@@ -39,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error updating record: " . $conn->error;
     }
 
-    // Close connection
+    // Close statement and connection
+    $stmt->close();
     $conn->close();
 } else {
     // If form is not submitted, redirect to forgot password page
