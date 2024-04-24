@@ -105,7 +105,9 @@
     <header>
         <nav class="navbar">
           <div class="container">
-            <img src="logo.png" alt="" class="logo">
+          <a href="home.html">
+              <img src="logo.png" alt="" class="logo">
+          </a>
             <ul class="nav-links">
               <li><a href="custome_query_page.php">Home</a></li>
               <li><a href="aboutus.html">About</a></li>

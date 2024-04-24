@@ -91,6 +91,7 @@ if (!isset($_SESSION['manager_email'])) {
 
     $html = "<html><table style='width:100%' border='1px solid black'><tr>
         
+        <th>order_id</th>
         <th>customer_id</th>
         <th>username</th>
         <th>dish_id</th>
@@ -102,8 +103,8 @@ if (!isset($_SESSION['manager_email'])) {
         <th>Update Status</th>
       </tr>";
     
-    //$sql = "SELECT dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";
-    $sql = "SELECT ci.customer_id, c.username, ci.dish_id, ad.dish_name, ci.quantity_selected, ci.date, c.address, ci.status FROM customer_info ci 
+    //$sql = "SELECT order_id, dish_id, dish_name, cuisine, ingredients, veg_or_nonveg, price, quantity FROM alldishes WHERE quantity > 0";
+    $sql = "SELECT ci.order_id, ci.customer_id, c.username, ci.dish_id, ad.dish_name, ci.quantity_selected, ci.date, c.address, ci.status FROM customer_info ci 
     JOIN customers c ON ci.customer_id = c.customer_id 
     JOIN alldishes ad ON ci.dish_id = ad.dish_id WHERE ci.status = 'In progress'";
 
@@ -115,6 +116,7 @@ if (!isset($_SESSION['manager_email'])) {
         while($row = mysqli_fetch_assoc($result)) {
             // Assuming the image file name is constructed using dish id
             $html .= "<tr>
+                        <td>".$row['order_id']."</td>
                         <td>".$row['customer_id']."</td>
                         <td>".$row['username']."</td>
                         <td>".$row['dish_id']."</td>
