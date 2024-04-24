@@ -1,5 +1,4 @@
 <?php
- echo "Your password has been reset.";
 // Include database connection
 include 'dbconnection.php';
 
@@ -8,21 +7,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = $_POST["new_password"];
     $confirm_password = $_POST["confirm_password"];
 
-    // Check if passwords match
+    // Check if new password and confirm password match
     if ($new_password !== $confirm_password) {
-        // Passwords do not match, redirect back to reset password page with error message
+        // Passwords don't match, redirect back to reset password page with error message
         header("Location: reset_password.html?error=password_mismatch");
         exit();
     }
 
-    // Hash the new password
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-
-    // Update the password in the database
-    $update_query = "UPDATE customers SET password = '$hashed_password' WHERE username = '$username'";
-    if (mysqli_query($conn, $update_query)) {
-        // Password updated successfully, redirect to a success page
-        echo "Your password has been reset.";
+    // Update the password in the database using prepared statement
+    $sql = "UPDATE customers SET password = ? WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $new_password, $username);
+    if ($stmt->execute()) {
+        // Password updated successfully, redirect to sign-in page or display a success message
         header("Location: customer_sign_in.html");
         exit();
     } else {
@@ -31,4 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+
+// If form is not submitted, redirect to reset password page
+header("Location: reset_password.html");
+exit();
 ?>
