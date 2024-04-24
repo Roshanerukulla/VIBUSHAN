@@ -23,17 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Exit PHP script
     }
 
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     // Escape variables to prevent SQL injection
     $email = $conn->real_escape_string($email);
-    $password = $conn->real_escape_string($password);
 
-    // Perform database operation to save manager email
+    // Perform database operation to save manager email and hashed password
     // Construct the SQL query with escaped variables
-    $sql = "INSERT INTO manager_vibushan (email, password) VALUES ('$email', '$password')";
+    $sql = "INSERT INTO manager_vibushan (email, password) VALUES ('$email', '$hashedPassword')";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
-        echo "manager registered successfully!";
+        echo "Manager registered successfully!";
         sleep(5);
         header("Location: manager_sigin_reg.html");
     } else {
@@ -46,4 +48,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: manager_register_page.html");
     exit(); // Exit PHP script
 }
+
 ?>

@@ -1,41 +1,45 @@
 <?php
 // Start session
+// Start session
 session_start();
 
 // Database connection
 include 'dbconnection.php';
-
-// Prevent caching
-header("Cache-Control: no-cache, no-store, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: 0");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header("Cache-Control: max-age=0, no-cache, no-store, must-revalidate");
-header("Pragma: no-cache");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve values from form
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // SQL query to check if email and password exist in the database
-    $sql = "SELECT email, password FROM manager_vibushan WHERE email = '$email' AND password = '$password'";
+    // SQL query to retrieve hashed password based on email
+    $sql = "SELECT email, password FROM manager_vibushan WHERE email = '$email'";
     $result = mysqli_query($conn, $sql);
 
-    // If user exists, set session variables and redirect to home page
     if (mysqli_num_rows($result) > 0) {
-        // Set session variables
-        $_SESSION['manager_email'] = $email;
-        
-        // Redirect to home page
-        header("Location: manager_view.php");
-        exit();
+        // Fetch the hashed password
+        $row = mysqli_fetch_assoc($result);
+        $hashedPassword = $row['password'];
+
+        // Verify password
+        if (password_verify($password, $hashedPassword)) {
+            // Password is correct, set session variable and redirect to home page
+            $_SESSION['manager_email'] = $email;
+            header("Location: manager_view.php");
+            exit();
+        } else {
+            // Password is incorrect
+            echo "Invalid email or password";
+            echo "<meta http-equiv='refresh' content='2;url=manager_sigin_reg.html'>";
+            exit();
+        }
     } else {
-        echo "Invalid email or password"; // Show error message
+        // No user found with the given email
+        echo "Invalid email or password";
         echo "<meta http-equiv='refresh' content='2;url=manager_sigin_reg.html'>";
-        exit; // Stop further execution
+        exit();
     }
 }
 
 $conn->close();
+
 ?>
