@@ -23,6 +23,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Exit PHP script
     }
 
+    // Check if the email exists in the database
+    $sql_check_email = "SELECT * FROM manager_vibushan WHERE email = ?";
+    $stmt_check_email = $conn->prepare($sql_check_email);
+    $stmt_check_email->bind_param("s", $email);
+    $stmt_check_email->execute();
+    $result = $stmt_check_email->get_result();
+
+    if ($result->num_rows == 0) {
+        // Email does not exist in the database
+        echo "Incorrect email. Please try again.";
+        echo '<script>
+                setTimeout(function(){
+                    window.location.href = "forgot_pass_man.html";
+                }, 2000); // 2000 milliseconds = 2 seconds
+              </script>';
+        exit(); // Exit PHP script
+    }
+
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
