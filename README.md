@@ -1,3 +1,20 @@
+# Team Members:
+1. Sri Naga Venkata Vijay Kumar Pulavarthi
+2. Roshan Erukulla
+3. Bhushan Shelke
+
+Link for the application: https://in-info-web4.informatics.iupui.edu/~bshelke/vibushan1/home.html
+
+## Database Connection Setup:
+To establish a connection with the database, update the following credentials in the 'dbconnection.php' file:
+```php
+$server = "localhost";
+$username = "bshelke";
+$password = "Goodluck@123456";
+$database = "bshelke_db";
+```
+Include your 'dbconnection.php' file in the same folder as the 'html' and 'php' files.
+
 VIBUSHAN Restaurant Website Management System
 
 This website serves a main purpose for the Restaurant owners to handle the incoming orders from the customers also at the same the managers can process this orders in real-time as well as update the menu.
