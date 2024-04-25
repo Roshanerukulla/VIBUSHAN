@@ -4,7 +4,7 @@ include "dbconnection.php";
 
 // Redirect to customer sign-in page if customer_id is not set
 if (!isset($_SESSION['customer_id'])) {
-    header("Location: thankyou.html");
+    header("Location: customer_sign_in.html");
     exit;
 }
 
