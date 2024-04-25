@@ -2,23 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="10;url=customer_sign_in.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thank You!</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         text-align: center;
         padding: 50px;
-        background-image: url('tq.jpg');
+        background-image: linear-gradient(to bottom right, black , goldenrod);
         background-size: cover;
+        background-attachment: fixed;
     }
     .container {
         max-width: 600px;
         margin: 0 auto;
-        background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+        background-color: rgba(255, 255, 255, 0.84); /* Add a semi-transparent white background */
         border-radius: 10px;
         padding: 30px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     h1 {
         color: #333;
@@ -28,30 +30,41 @@
         color: #666;
         margin-bottom: 20px;
     }
-    .redirect-message {
-        font-size: 18px;
-        color: #999;
-    }
-    .redirect-message span {
-        font-weight: bold;
-        color: #555;
-    }
     .accent-bg {
-        background-color: #6cb2eb;
+        background-color: #007bff;
         color: #fff;
-        padding: 10px 20px;
+        padding: 15px 30px;
         border-radius: 5px;
         display: inline-block;
-        margin-top: 20px;
+        margin-top: 30px;
+        transition: background-color 0.3s ease;
+    }
+    .accent-bg:hover {
+        background-color: #0056b3;
     }
 </style>
 </head>
 <body>
     <div class="container">
-        <h1>Thank You for your feedback!</h1>
-        <p> We appreciate your support and hope you have a great day!</p>
-        <p class="redirect-message">Redirecting to <span>sign-in</span> page in <span>5</span> seconds...</p>
-        <div class="accent-bg">Have a great day!</div>
+        <h1 class="display-4">Thank You for Your Feedback!</h1>
+        <p class="lead">We appreciate your support and hope you have a great day!</p>
+        <p class="redirect-message lead">Redirecting to <span>Sign In</span> page...</p>
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
+    <!-- Your Logo -->
+    <img src="logo.png" alt="Your Logo" style="max-width: 200px; margin-top: 50px;">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                window.location.href = "customer_sign_in.html"; // Redirect to sign-in page after 3 seconds
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
