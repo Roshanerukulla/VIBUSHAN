@@ -23,15 +23,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Exit PHP script
     }
 
-    // Escape variables to prevent SQL injection
-    // $email = $conn->real_escape_string($email);
-    // $password = $conn->real_escape_string($password);
+    // Check if the email exists in the database
+    $sql_check_email = "SELECT * FROM manager_vibushan WHERE email = ?";
+    $stmt_check_email = $conn->prepare($sql_check_email);
+    $stmt_check_email->bind_param("s", $email);
+    $stmt_check_email->execute();
+    $result = $stmt_check_email->get_result();
 
-    // Update password in the database
-    $sql = "UPDATE manager_vibushan SET password = '$password' WHERE email = '$email'";
+    if ($result->num_rows == 0) {
+        // Email does not exist in the database
+        echo "Incorrect email. Please try again.";
+        echo '<script>
+                setTimeout(function(){
+                    window.location.href = "forgot_pass_man.html";
+                }, 2000); // 2000 milliseconds = 2 seconds
+              </script>';
+        exit(); // Exit PHP script
+    }
 
-    // Execute the query
-    if ($conn->query($sql) === TRUE) {
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Prepare SQL statement to update password in the database
+    $sql = "UPDATE manager_vibushan SET password = ? WHERE email = ?";
+
+    // Prepare and bind parameters
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $hashedPassword, $email);
+
+    // Execute the statement
+    if ($stmt->execute()) {
         echo "Password reset successfully!";
         sleep(3);
         header("Location: manager_sigin_reg.html");
@@ -39,7 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error updating record: " . $conn->error;
     }
 
-    // Close connection
+    // Close statement and connection
+    $stmt->close();
     $conn->close();
 } else {
     // If form is not submitted, redirect to forgot password page
