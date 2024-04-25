@@ -58,7 +58,7 @@ unset($_SESSION['logged_out']);
           <div class="container">
             <img src="logo.png" alt="" class="logo">
             <ul class="nav-links">
-              <li><a href="manager_view.html">Home</a></li>
+              <li><a href="manager_view.php">Home</a></li>
               <li><a href="aboutus.html">About</a></li>
               
               <li><a href="logoutm.php">Logout</a></li>
