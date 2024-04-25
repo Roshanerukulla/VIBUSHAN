@@ -8,7 +8,7 @@ Let's have a look how our website functions:
 
 Link to the Github Readme file: https://github.com/vijaypulavarthi333/VIBUSHAN/blob/main/README.md
 
-## Home Page: https://in-info-web4.informatics.iupui.edu/~bshelke/vibhushan/home.html
+## Home Page: https://in-info-web4.informatics.iupui.edu/~bshelke/vibushan1/home.html
    From the Home page, you can access the Customer and Manager pages, as well as you can check more information about us by clicking on the links available on the nav-bar.
 
    
@@ -16,13 +16,13 @@ Link to the Github Readme file: https://github.com/vijaypulavarthi333/VIBUSHAN/b
 
 ## Customer Side:
 
-1. Customer Sign-in: https://in-info-web4.informatics.iupui.edu/~bshelke/vibhushan/customer_sign_in.html
+1. Customer Sign-in: https://in-info-web4.informatics.iupui.edu/~bshelke/vibushan1/customer_sign_in.html
    This sign-in page helps the customer to sign-in, create a new account and also change their password if they have forgotten it.
 
   
 
 
-3. Customer Sign-up: https://in-info-web4.informatics.iupui.edu/~bshelke/vibhushan/customer_reg.html
+3. Customer Sign-up: https://in-info-web4.informatics.iupui.edu/~bshelke/vibushan1/customer_reg.html
    This sign-up page is where the customers would add their credentials and their home address where they want their meal to be delivered.
 
 4. After signing in, the customer will have two options, one of Ordering a meal and other of checking what they have ordered previoulsy.
@@ -43,7 +43,7 @@ Link to the Github Readme file: https://github.com/vijaypulavarthi333/VIBUSHAN/b
 
 ## Manager Side:
 
-1. Manager Sign-in: https://in-info-web4.informatics.iupui.edu/~bshelke/vibhushan/manager_sigin_reg.html
+1. Manager Sign-in: https://in-info-web4.informatics.iupui.edu/~bshelke/vibushan1/manager_sigin_reg.html
    This sign-in page helps the Manager to sign-in, create a new account and also change their password if they have forgotten it.
    
 
