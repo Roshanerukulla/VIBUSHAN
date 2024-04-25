@@ -54,12 +54,11 @@ Let's have a look how our website functions:
 4. After logging in, the manager has two options, one is 'Checking orders' and other of updating the menu. The Checking orders page gets reloaded every time when order is placed where the manager gets crucial information of the dishes ordered, their quantity and the customer address.
    ![image](https://github.com/vijaypulavarthi333/VIBUSHAN/assets/83290382/820a6976-7204-4147-8385-923b7e41a763)
    ![image](https://github.com/vijaypulavarthi333/VIBUSHAN/assets/83290382/3d04fdaa-d188-44a7-bf36-28b9a7bc0ed0)
+
+5. The manager can update the menu, the menu updates are swift and get reflected on the customer side very quickly.
    ![image](https://github.com/vijaypulavarthi333/VIBUSHAN/assets/83290382/4cf28204-cf40-44d5-8987-4fe5bfbead9c)
+
 
 ## Database Structure:
 ![image](https://github.com/vijaypulavarthi333/VIBUSHAN/assets/83290382/0669e63b-901f-440b-b7ba-36c66dc0bbd4)
 
-
-
-
-5. The manager can update the menu, the menu updates are swift and get reflected on the customer side very quickly.
